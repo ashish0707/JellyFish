@@ -4,21 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:text="update"
+    <com.example.jellyfishanimation.WaveViewBlue
+        android:id="@+id/waveviewblue"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:visibility="visible"
+        android:rotation="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.example.jellyfishanimation.WaveView
         android:id="@+id/jellyFishesView"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.example.jellyfishanimation.WaveViewTeal
+        android:id="@+id/jellyFishesViewTeal"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:visibility="visible"
+        android:rotation="20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -19,12 +19,13 @@ import android.view.animation.RotateAnimation
 import androidx.core.content.ContextCompat
 
 
-class WaveView @JvmOverloads constructor(
+class WaveViewBlue @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
     private var amplitude = 10f.toDp() // scale
     private var speed = 0f
+    private val path = Path()
     private var paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var animator: ValueAnimator? = null
     val rotate : RotateAnimation? = null
@@ -32,11 +33,7 @@ class WaveView @JvmOverloads constructor(
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         animator?.cancel()
-        paint.strokeWidth = 8f
-        paint.style = Paint.Style.STROKE
-        paint.strokeJoin = Paint.Join.MITER
-        paint.strokeCap = Paint.Cap.BUTT
-        paint.color = ContextCompat.getColor(this.context, R.color.jellyfish_neon)
+        animator = createAnimator().apply { start() }
         val rotate = RotateAnimation(
             0f,
             360f,
@@ -48,8 +45,8 @@ class WaveView @JvmOverloads constructor(
         rotate.duration = 10000
         rotate.interpolator = LinearInterpolator()
         rotate.repeatCount = Animation.INFINITE;
-        animator = createAnimator().apply { start() }
-//        startAnimation(rotate)
+        paint.color = ContextCompat.getColor(this.context, R.color.jellyfish_blue)
+        startAnimation(rotate)
     }
 
     override fun onDraw(c: Canvas) {
@@ -61,6 +58,7 @@ class WaveView @JvmOverloads constructor(
             repeatCount = ValueAnimator.INFINITE
             addUpdateListener {
                 speed -= WAVE_SPEED
+                createPath()
                 invalidate()
 
             }
@@ -68,8 +66,11 @@ class WaveView @JvmOverloads constructor(
     }
 
     private fun createPath() {
-//        path.reset()
-
+        path.reset()
+        paint.strokeWidth = 8f
+        paint.style = Paint.Style.STROKE
+        paint.strokeJoin = Paint.Join.MITER
+        paint.strokeCap = Paint.Cap.BUTT
 //        path.moveTo(40f, height.toFloat() / 2)
 //        var i = 40
 //        var wx = 0f
@@ -140,7 +141,7 @@ class WaveView @JvmOverloads constructor(
 
     companion object {
         const val WAVE_SPEED = 0.050f
-        const val WAVE_AMOUNT_ON_SCREEN = 80
+        const val WAVE_AMOUNT_ON_SCREEN = 70
     }
 
     private fun Float.toDp() = this * context.resources.displayMetrics.density

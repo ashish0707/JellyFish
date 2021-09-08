@@ -38,28 +38,6 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        binding.jellyFishesView.startListening()
-        binding.textView.setOnClickListener() { v ->
-            val t = Timer()
-
-//Set the schedule function and rate
-//Set the schedule function and rate
-            t.scheduleAtFixedRate(
-                object : TimerTask() {
-                    override fun run() {
-//                        binding.jellyFishView.amplitude =
-//                            Random.nextDouble(
-//                                100.0,
-//                                1000.0
-//                            )/ 1000.0
-                        binding.jellyFishView.invalidate()
-                    }
-                },  //Set how long before to start calling the TimerTask (in milliseconds)
-                0,  //Set the amount of time between each execution (in milliseconds)
-                100
-            )
-
-            }
         val newRadius = CircleMath.warpedRadius(
             0.0f, 207.0f, 68.0f, -1.80f, 2.0f, 2.0996091f, 0.34677434f)
         Log.d("circle" , "Value is $newRadius"
